@@ -1,0 +1,46 @@
+# Robots.txt for Raksha Assist
+# https://rakshaassist.com
+
+User-agent: *
+Allow: /
+Allow: /plans
+Allow: /about-us
+Allow: /contact
+Allow: /faq
+Allow: /how-it-works
+
+# Disallow admin and private areas
+Disallow: /dashboard
+Disallow: /super-admin
+Disallow: /agent
+Disallow: /franchise
+Disallow: /raksha-ctrl-x9k2m
+Disallow: /api/
+Disallow: /payment
+Disallow: /payment-history
+
+# Sitemap
+Sitemap: https://rakshaassist.com/sitemap.xml
+
+# Crawl delay for politeness
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

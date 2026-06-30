@@ -1,0 +1,56 @@
+name: raksha-assist
+region: blr
+
+services:
+  - name: raksha-assist-api
+    github:
+      repo: jagopro452-cloud/raksha-assist
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-s
+    http_port: 5000
+    health_check:
+      http_path: /_health
+      initial_delay_seconds: 15
+      period_seconds: 30
+    build_command: |
+      cd frontend && npm install && npm run build &&
+      cd ../backend && npm install && npm run build &&
+      cp -r ../frontend/dist ../frontend/dist-copy &&
+      mkdir -p dist/public &&
+      cp -r ../frontend/dist-copy/* dist/public/ 2>/dev/null || true
+    run_command: cd backend && npm start
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "5000"
+      - key: DATABASE_URL
+        type: SECRET
+        value: "YOUR_POSTGRESQL_CONNECTION_STRING"
+      - key: SESSION_SECRET
+        type: SECRET
+        value: "GENERATE_64_CHAR_HEX_SECRET"
+      - key: PII_ENCRYPTION_KEY
+        type: SECRET
+        value: "GENERATE_32_BYTE_HEX_KEY"
+      - key: FRONTEND_URL
+        value: "${APP_URL}"
+      - key: OTP_PROVIDER
+        value: firebase
+      - key: SUPERADMIN_RESET_KEY
+        type: SECRET
+        value: "GENERATE_32_BYTE_HEX_KEY"
+      - key: SETUP_SECRET
+        type: SECRET
+        value: "GENERATE_SETUP_SECRET"
+
+databases:
+  - name: raksha-db
+    engine: PG
+    version: "16"
+    size: db-s-1vcpu-1gb
+    num_nodes: 1

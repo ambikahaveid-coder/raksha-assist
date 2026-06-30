@@ -1,0 +1,6 @@
+Cleanup plan:
+- Remove .replit file
+- Remove replit.md
+- Remove all references to 'Replit' in README, code, and UI
+- Remove any Replit-specific scripts or config
+- Verify no UI or code mentions 'Replit' or uses Replit-specific logic

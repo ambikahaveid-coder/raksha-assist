@@ -1,0 +1,558 @@
+﻿[
+  {
+    "id": "4f5dd843-384e-470a-a297-90d960085055",
+    "owner_uuid": "68e02716-372b-4a1c-b955-7bc4280b16bc",
+    "spec": {
+      "name": "rakshaassist",
+      "services": [
+        {
+          "name": "raksha-assist",
+          "github": {
+            "repo": "jagopro452-cloud/raksha-assist",
+            "branch": "main",
+            "deploy_on_push": true
+          },
+          "build_command": "cd frontend \u0026\u0026 npm install --include=dev \u0026\u0026 npm run build \u0026\u0026 cd ../backend \u0026\u0026 npm install --include=dev \u0026\u0026 npm run build \u0026\u0026 cp -r ../frontend/dist ../frontend/dist-copy \u0026\u0026 mkdir -p dist/public \u0026\u0026 cp -r ../frontend/dist-copy/* dist/public/ 2\u003e/dev/null || true \u0026\u0026 cp -r migrations dist/migrations",
+          "run_command": "cd backend \u0026\u0026 node scripts/setup-schema.mjs; npm start",
+          "source_dir": "/",
+          "environment_slug": "node-js",
+          "envs": [
+            {
+              "key": "NODE_ENV",
+              "value": "production",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "PORT",
+              "value": "8080",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "FRONTEND_URL",
+              "value": "${APP_URL}",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "SESSION_SECRET",
+              "value": "EV[1:3S+Zw0+u6bcl1HeInY3oTp7ffwp3q4IN:EyHgJPfqoxAt2QGL1Mwp0Y/n4SoIXmkRItVNf7efM+hzXqAbY4MQZtZ9rvgOZfFFkllvrLCzW298uJhU8Qq4EgTZI/fkvllbS8of3psdh0xP1cXHGWRAS6t/9D6WcJAWCErtudPA5Bwrb9LMKCGvSIOVPVai0FVnqWu6m5Y3Kx8811pI4QGDnp6AGJwx5Iwt]",
+              "scope": "RUN_AND_BUILD_TIME",
+              "type": "SECRET"
+            },
+            {
+              "key": "PII_ENCRYPTION_KEY",
+              "value": "EV[1:koTXidX2xLWkQapXziLe3pUxewQzfhhm:fyaqZFFieDM9S9Mh81uD+aMlnQn9h88Kmzew+NaG68CPzi6sakHfvpZ6vd//8q8Y22s1HyooliPiSzspv6Evp3UW2biLU9W+WtFcrZHML8U=]",
+              "scope": "RUN_AND_BUILD_TIME",
+              "type": "SECRET"
+            },
+            {
+              "key": "SUPERADMIN_RESET_KEY",
+              "value": "EV[1:yA9gt0+7qgK9gqCcc9aXR0PhD6cCjjWE:H++3vfw0UxVoZE/Z+bVb0+pq6hlrmqa0lEPkolzENPLBZkb9kigz6/FmcGenSHcAWsfiHKVFMfhWW0IXiP6GfkIgbbKU1i6PT2/LBhUKaa8=]",
+              "scope": "RUN_AND_BUILD_TIME",
+              "type": "SECRET"
+            },
+            {
+              "key": "INITIAL_SUPERADMIN_PASSWORD",
+              "value": "Kiran@1986",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "OTP_PROVIDER",
+              "value": "demo",
+              "scope": "RUN_AND_BUILD_TIME"
+            },
+            {
+              "key": "DATABASE_URL",
+              "value": "postgresql://doadmin:REDACTED@db-postgresql-blr1-01652-do-user-34285110-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require",
+              "scope": "RUN_AND_BUILD_TIME"
+            }
+          ],
+          "instance_size_slug": "apps-s-1vcpu-1gb",
+          "instance_count": 1,
+          "http_port": 8080,
+          "health_check": {
+            "initial_delay_seconds": 15,
+            "period_seconds": 10,
+            "timeout_seconds": 5,
+            "http_path": "/_health"
+          }
+        }
+      ],
+      "databases": [
+        {
+          "name": "raksha-db",
+          "engine": "PG",
+          "version": "16"
+        }
+      ],
+      "domains": [
+        {
+          "domain": "rakshaassist.com",
+          "type": "PRIMARY",
+          "zone": "rakshaassist.com"
+        }
+      ],
+      "region": "blr",
+      "alerts": [
+        {
+          "rule": "DEPLOYMENT_FAILED"
+        },
+        {
+          "rule": "DOMAIN_FAILED"
+        }
+      ],
+      "ingress": {
+        "rules": [
+          {
+            "match": {
+              "path": {
+                "prefix": "/"
+              },
+              "authority": {}
+            },
+            "component": {
+              "name": "raksha-assist"
+            }
+          }
+        ]
+      },
+      "features": [
+        "buildpack-stack=ubuntu-22"
+      ]
+    },
+    "last_deployment_active_at": "2026-04-02T10:33:03Z",
+    "default_ingress": "https://jellyfish-app-wcam7.ondigitalocean.app",
+    "created_at": "2026-03-18T09:59:20Z",
+    "updated_at": "2026-04-02T10:40:27Z",
+    "active_deployment": {
+      "id": "be0d721f-6bfc-4890-8bca-d1e65ec3764b",
+      "spec": {
+        "name": "rakshaassist",
+        "services": [
+          {
+            "name": "raksha-assist",
+            "github": {
+              "repo": "jagopro452-cloud/raksha-assist",
+              "branch": "main",
+              "deploy_on_push": true
+            },
+            "build_command": "cd frontend \u0026\u0026 npm install --include=dev \u0026\u0026 npm run build \u0026\u0026 cd ../backend \u0026\u0026 npm install --include=dev \u0026\u0026 npm run build \u0026\u0026 cp -r ../frontend/dist ../frontend/dist-copy \u0026\u0026 mkdir -p dist/public \u0026\u0026 cp -r ../frontend/dist-copy/* dist/public/ 2\u003e/dev/null || true \u0026\u0026 cp -r migrations dist/migrations",
+            "run_command": "cd backend \u0026\u0026 node scripts/setup-schema.mjs; npm start",
+            "source_dir": "/",
+            "environment_slug": "node-js",
+            "envs": [
+              {
+                "key": "NODE_ENV",
+                "value": "production",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "PORT",
+                "value": "8080",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "FRONTEND_URL",
+                "value": "${APP_URL}",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "SESSION_SECRET",
+                "value": "EV[1:3S+Zw0+u6bcl1HeInY3oTp7ffwp3q4IN:EyHgJPfqoxAt2QGL1Mwp0Y/n4SoIXmkRItVNf7efM+hzXqAbY4MQZtZ9rvgOZfFFkllvrLCzW298uJhU8Qq4EgTZI/fkvllbS8of3psdh0xP1cXHGWRAS6t/9D6WcJAWCErtudPA5Bwrb9LMKCGvSIOVPVai0FVnqWu6m5Y3Kx8811pI4QGDnp6AGJwx5Iwt]",
+                "scope": "RUN_AND_BUILD_TIME",
+                "type": "SECRET"
+              },
+              {
+                "key": "PII_ENCRYPTION_KEY",
+                "value": "EV[1:koTXidX2xLWkQapXziLe3pUxewQzfhhm:fyaqZFFieDM9S9Mh81uD+aMlnQn9h88Kmzew+NaG68CPzi6sakHfvpZ6vd//8q8Y22s1HyooliPiSzspv6Evp3UW2biLU9W+WtFcrZHML8U=]",
+                "scope": "RUN_AND_BUILD_TIME",
+                "type": "SECRET"
+              },
+              {
+                "key": "SUPERADMIN_RESET_KEY",
+                "value": "EV[1:yA9gt0+7qgK9gqCcc9aXR0PhD6cCjjWE:H++3vfw0UxVoZE/Z+bVb0+pq6hlrmqa0lEPkolzENPLBZkb9kigz6/FmcGenSHcAWsfiHKVFMfhWW0IXiP6GfkIgbbKU1i6PT2/LBhUKaa8=]",
+                "scope": "RUN_AND_BUILD_TIME",
+                "type": "SECRET"
+              },
+              {
+                "key": "INITIAL_SUPERADMIN_PASSWORD",
+                "value": "Kiran@1986",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "OTP_PROVIDER",
+                "value": "demo",
+                "scope": "RUN_AND_BUILD_TIME"
+              },
+              {
+                "key": "DATABASE_URL",
+                "value": "postgresql://doadmin:REDACTED@db-postgresql-blr1-01652-do-user-34285110-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require",
+                "scope": "RUN_AND_BUILD_TIME"
+              }
+            ],
+            "instance_size_slug": "apps-s-1vcpu-1gb",
+            "instance_count": 1,
+            "http_port": 8080,
+            "health_check": {
+              "initial_delay_seconds": 15,
+              "period_seconds": 10,
+              "timeout_seconds": 5,
+              "http_path": "/_health"
+            }
+          }
+        ],
+        "databases": [
+          {
+            "name": "raksha-db",
+            "engine": "PG",
+            "version": "16"
+          }
+        ],
+        "domains": [
+          {
+            "domain": "rakshaassist.com",
+            "type": "PRIMARY",
+            "zone": "rakshaassist.com"
+          }
+        ],
+        "region": "blr",
+        "alerts": [
+          {
+            "rule": "DEPLOYMENT_FAILED"
+          },
+          {
+            "rule": "DOMAIN_FAILED"
+          }
+        ],
+        "ingress": {
+          "rules": [
+            {
+              "match": {
+                "path": {
+                  "prefix": "/"
+                },
+                "authority": {}
+              },
+              "component": {
+                "name": "raksha-assist"
+              }
+            }
+          ]
+        },
+        "features": [
+          "buildpack-stack=ubuntu-22"
+        ]
+      },
+      "services": [
+        {
+          "name": "raksha-assist",
+          "source_commit_hash": "180535e86e094dff81aef9b580e6a97a7256dc27",
+          "buildpacks": [
+            {
+              "id": "heroku/nodejs",
+              "version": "0.338.5",
+              "latest": true,
+              "name": "Node.js",
+              "description": [
+                "Install dependencies using NPM, PNPM or Yarn"
+              ],
+              "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+            },
+            {
+              "id": "digitalocean/procfile",
+              "version": "0.1.0",
+              "latest": true,
+              "name": "Procfile",
+              "description": [
+                "Configure default run commands from the Procfile if one exists"
+              ]
+            },
+            {
+              "id": "digitalocean/custom",
+              "version": "0.2.0",
+              "latest": true,
+              "name": "Custom Build Command",
+              "description": [
+                "Run the provided custom build command"
+              ],
+              "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+            }
+          ]
+        }
+      ],
+      "phase_last_updated_at": "2026-04-02T10:33:03Z",
+      "created_at": "2026-04-02T10:32:41Z",
+      "updated_at": "2026-04-02T10:33:03Z",
+      "cause": "automated rollback after failed deployment of \"246e84b5-640d-470c-87e5-acac98a3dae3\"",
+      "cloned_from": "f4170c70-6742-4fae-91c2-39e94a8cb0e7",
+      "progress": {
+        "success_steps": 7,
+        "total_steps": 7,
+        "steps": [
+          {
+            "name": "build",
+            "status": "SUCCESS",
+            "steps": [
+              {
+                "name": "initialize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-02T10:32:44.975788348Z",
+                "ended_at": "2026-04-02T10:32:45.918352852Z"
+              },
+              {
+                "name": "components",
+                "status": "SUCCESS",
+                "steps": [
+                  {
+                    "name": "raksha-assist",
+                    "status": "SUCCESS",
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "reason": {
+                      "code": "PreviousBuildReused",
+                      "message": "Your previous build was reused."
+                    },
+                    "component_name": "raksha-assist",
+                    "message_base": "Building service"
+                  },
+                  {
+                    "name": "raksha-db",
+                    "status": "SUCCESS",
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "component_name": "raksha-db",
+                    "message_base": "Creating database"
+                  }
+                ],
+                "started_at": "2026-04-02T10:32:45.918403734Z",
+                "ended_at": "2026-04-02T10:32:48.317149633Z"
+              }
+            ],
+            "started_at": "2026-04-02T10:32:44.975665314Z",
+            "ended_at": "2026-04-02T10:32:48.317336702Z"
+          },
+          {
+            "name": "deploy",
+            "status": "SUCCESS",
+            "steps": [
+              {
+                "name": "initialize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-02T10:32:52.426768197Z",
+                "ended_at": "2026-04-02T10:32:55.932452828Z"
+              },
+              {
+                "name": "components",
+                "status": "SUCCESS",
+                "steps": [
+                  {
+                    "name": "raksha-assist",
+                    "status": "SUCCESS",
+                    "steps": [
+                      {
+                        "name": "deploy",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "raksha-assist",
+                        "message_base": "Deploying service"
+                      },
+                      {
+                        "name": "wait",
+                        "status": "SUCCESS",
+                        "started_at": "0001-01-01T00:00:00Z",
+                        "ended_at": "0001-01-01T00:00:00Z",
+                        "component_name": "raksha-assist",
+                        "message_base": "Waiting for service"
+                      }
+                    ],
+                    "started_at": "0001-01-01T00:00:00Z",
+                    "ended_at": "0001-01-01T00:00:00Z",
+                    "component_name": "raksha-assist"
+                  }
+                ],
+                "started_at": "2026-04-02T10:32:55.932476745Z",
+                "ended_at": "2026-04-02T10:32:59.878266405Z"
+              },
+              {
+                "name": "finalize",
+                "status": "SUCCESS",
+                "started_at": "2026-04-02T10:33:00.923283203Z",
+                "ended_at": "2026-04-02T10:33:02.824108666Z"
+              }
+            ],
+            "started_at": "2026-04-02T10:32:52.426728033Z",
+            "ended_at": "2026-04-02T10:33:02.824207852Z"
+          }
+        ]
+      },
+      "phase": "ACTIVE",
+      "tier_slug": "professional",
+      "previous_deployment_id": "246e84b5-640d-470c-87e5-acac98a3dae3",
+      "cause_details": {
+        "internal": true,
+        "type": "AUTO_ROLLBACK"
+      },
+      "timing": {
+        "pending": "3.975788348s",
+        "build_total": "3.341548354s",
+        "build_billable": "0s",
+        "database_provision": "2.398340728s"
+      }
+    },
+    "last_deployment_created_at": "2026-04-02T10:39:10Z",
+    "live_url": "https://rakshaassist.com",
+    "region": {
+      "slug": "blr",
+      "label": "Bangalore",
+      "flag": "india",
+      "continent": "Asia",
+      "data_centers": [
+        "blr1"
+      ]
+    },
+    "tier_slug": "professional",
+    "live_url_base": "https://rakshaassist.com",
+    "live_domain": "rakshaassist.com",
+    "domains": [
+      {
+        "id": "c5ece603-05f8-4ef0-b791-c3c6f8be492d",
+        "spec": {
+          "domain": "rakshaassist.com",
+          "type": "PRIMARY",
+          "zone": "rakshaassist.com"
+        },
+        "phase": "ACTIVE",
+        "progress": {
+          "steps": [
+            {
+              "name": "default-ingress-ready",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:20.924027383Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-zone",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:20.924086745Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-ns-records",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.013565354Z",
+              "ended_at": "2026-03-18T13:55:09.685718244Z"
+            },
+            {
+              "name": "verify-nameservers",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.03359347Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.086085641Z",
+              "ended_at": "2026-03-18T13:55:09.769011329Z"
+            },
+            {
+              "name": "ensure-alias-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.086139037Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-wildcard-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.09233916Z",
+              "ended_at": "2026-03-18T13:56:19.851497646Z"
+            },
+            {
+              "name": "verify-cname",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.092389655Z",
+              "ended_at": "2026-03-18T13:56:19.851601684Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record-saved",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.092425034Z",
+              "ended_at": "2026-03-18T13:56:19.901675956Z"
+            },
+            {
+              "name": "ensure-ssl-txt-record",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.092458597Z",
+              "ended_at": "2026-03-18T13:56:19.901832095Z"
+            },
+            {
+              "name": "ensure-renewal-email",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.092492683Z",
+              "ended_at": "2026-03-18T13:56:19.90194129Z"
+            },
+            {
+              "name": "ensure-CA-authorization",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.092526071Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "ensure-certificate",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.105734972Z",
+              "ended_at": "0001-01-01T00:00:00Z"
+            },
+            {
+              "name": "create-deployment",
+              "status": "SUCCESS",
+              "started_at": "0001-01-01T00:00:00Z",
+              "ended_at": "2026-03-18T13:56:58.013391176Z"
+            },
+            {
+              "name": "configuration-alert",
+              "status": "SUCCESS",
+              "started_at": "2026-04-02T05:35:21.712789107Z",
+              "ended_at": "2026-03-18T13:56:20.500093044Z"
+            }
+          ]
+        },
+        "validation": {},
+        "certificate_expires_at": "2026-06-16T13:56:20Z"
+      }
+    ],
+    "build_config": {
+      "cnb_versioning": {
+        "buildpacks": [
+          {
+            "id": "digitalocean/custom",
+            "latest": true,
+            "name": "Custom Build Command",
+            "description": [
+              "Run the provided custom build command"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/how-to/build-run-commands/"
+          },
+          {
+            "id": "digitalocean/procfile",
+            "latest": true,
+            "name": "Procfile",
+            "description": [
+              "Configure default run commands from the Procfile if one exists"
+            ]
+          },
+          {
+            "id": "heroku/nodejs",
+            "latest": true,
+            "name": "Node.js",
+            "description": [
+              "Install dependencies using NPM, PNPM or Yarn"
+            ],
+            "docs_link": "https://docs.digitalocean.com/products/app-platform/languages-frameworks/nodejs/"
+          }
+        ],
+        "stack_id": "heroku-22"
+      }
+    },
+    "project_id": "d9a36951-0272-4928-b99b-f32f19ad4f47"
+  }
+]

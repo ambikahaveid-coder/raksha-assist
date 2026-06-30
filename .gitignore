@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Database
+*.sql
+!backend/migrations/*.sql
+database_backup.sql
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Uploads (user content)
+uploads/documents/*
+!uploads/documents/.gitkeep
+
+# Temp
+tmp/
+qa-temp/
+
+# QA / test artifacts
+current-spec.yaml

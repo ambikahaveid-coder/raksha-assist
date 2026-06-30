@@ -1,0 +1,76 @@
+﻿alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+databases:
+- engine: PG
+  name: raksha-db
+  version: "16"
+domains:
+- domain: rakshaassist.com
+  type: PRIMARY
+  zone: rakshaassist.com
+features:
+- buildpack-stack=ubuntu-22
+ingress:
+  rules:
+  - component:
+      name: raksha-assist
+    match:
+      authority: {}
+      path:
+        prefix: /
+name: rakshaassist
+region: blr
+services:
+- build_command: cd frontend && npm install --include=dev && npm run build && cd ../backend
+    && npm install --include=dev && npm run build && cp -r ../frontend/dist ../frontend/dist-copy
+    && mkdir -p dist/public && cp -r ../frontend/dist-copy/* dist/public/ 2>/dev/null
+    || true && cp -r migrations dist/migrations
+  environment_slug: node-js
+  envs:
+  - key: NODE_ENV
+    scope: RUN_AND_BUILD_TIME
+    value: production
+  - key: PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "8080"
+  - key: FRONTEND_URL
+    scope: RUN_AND_BUILD_TIME
+    value: https://rakshaassist.com
+  - key: SESSION_SECRET
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: EV[1:3S+Zw0+u6bcl1HeInY3oTp7ffwp3q4IN:EyHgJPfqoxAt2QGL1Mwp0Y/n4SoIXmkRItVNf7efM+hzXqAbY4MQZtZ9rvgOZfFFkllvrLCzW298uJhU8Qq4EgTZI/fkvllbS8of3psdh0xP1cXHGWRAS6t/9D6WcJAWCErtudPA5Bwrb9LMKCGvSIOVPVai0FVnqWu6m5Y3Kx8811pI4QGDnp6AGJwx5Iwt]
+  - key: PII_ENCRYPTION_KEY
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: EV[1:koTXidX2xLWkQapXziLe3pUxewQzfhhm:fyaqZFFieDM9S9Mh81uD+aMlnQn9h88Kmzew+NaG68CPzi6sakHfvpZ6vd//8q8Y22s1HyooliPiSzspv6Evp3UW2biLU9W+WtFcrZHML8U=]
+  - key: SUPERADMIN_EMAIL
+    scope: RUN_AND_BUILD_TIME
+    value: superadmin@rakshaassist.com
+  - key: SUPERADMIN_PASSWORD
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: Kiran@1986
+  - key: OTP_PROVIDER
+    scope: RUN_AND_BUILD_TIME
+    value: demo
+  - key: DATABASE_URL
+    scope: RUN_AND_BUILD_TIME
+    type: SECRET
+    value: postgresql://doadmin:REDACTED@db-postgresql-blr1-01652-do-user-34285110-0.e.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: jagopro452-cloud/raksha-assist
+  health_check:
+    http_path: /_health
+    initial_delay_seconds: 15
+    period_seconds: 10
+    timeout_seconds: 5
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: apps-s-1vcpu-1gb
+  name: raksha-assist
+  run_command: cd backend && node scripts/setup-schema.mjs; npm start
+  source_dir: /

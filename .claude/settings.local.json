@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\kiran\\\\.claude\\\\projects\\\\c--Users-kiran-OneDrive-Desktop-raksha-assist-full-backup\\\\memory\"\" 2>/dev/null || echo \"Directory empty or missing \")",
+      "Bash(git -C /c/Users/kiran/OneDrive/Desktop/raksha-assist-full-backup log --oneline -10)"
+    ],
+    "additionalDirectories": [
+      "\\tmp",
+      "C:\\Users\\kiran\\AppData\\Local\\Temp"
+    ]
+  }
+}

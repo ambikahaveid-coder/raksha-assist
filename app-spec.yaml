@@ -1,0 +1,62 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+databases:
+- engine: PG
+  name: raksha-db
+  num_nodes: 1
+  size: db-s-dev-database
+  version: "16"
+features:
+- buildpack-stack=ubuntu-22
+ingress:
+  rules:
+  - component:
+      name: raksha-assist
+    match:
+      authority: {}
+      path:
+        prefix: /
+name: jellyfish-app
+region: blr
+services:
+- build_command: bash build.sh
+  environment_slug: node-js
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: PORT
+    value: "8080"
+  - key: FRONTEND_URL
+    value: ${APP_URL}
+  - key: SESSION_SECRET
+    value: 5efec1c6c53e529e4a96183377f8f02de50db4a4941c9f48c27e38fa72de7f1592f6339dfe461c1a4bf43586be617bf3a5988e4ab9f5e760e580ae0fcfa0e5ae
+    type: SECRET
+  - key: PII_ENCRYPTION_KEY
+    value: 6686d834e1460c4ac3b65188fb62f5183784366b5be35e8aff54bf0ea0fa1876
+    type: SECRET
+  - key: SUPERADMIN_EMAIL
+    value: superadmin@rakshaassist.com
+  - key: SUPERADMIN_PASSWORD
+    value: RakshaAdmin@2026!
+    type: SECRET
+  - key: OTP_PROVIDER
+    value: demo
+  - key: DATABASE_URL
+    value: ${raksha-db.DATABASE_URL}
+    type: SECRET
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: jagopro452-cloud/raksha-assist
+  health_check:
+    http_path: /_health
+    initial_delay_seconds: 15
+    period_seconds: 10
+    timeout_seconds: 5
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: apps-s-1vcpu-1gb
+  name: raksha-assist
+  run_command: cd backend && node scripts/setup-schema.mjs; npm start
+  source_dir: /
