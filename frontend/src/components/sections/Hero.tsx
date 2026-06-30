@@ -7,8 +7,9 @@ export function Hero() {
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-44 lg:pb-28 overflow-hidden bg-slate-50">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="bg-blue-900/90 text-white text-center py-2 px-4 rounded-lg mb-6 text-xs md:text-sm">
-          <strong>Important:</strong> Raksha Assist is a membership-based emergency assistance and coordination platform. This is NOT an insurance product or TPA service.
+        <div className="bg-green-600 text-white text-center py-2 px-4 rounded-lg mb-6 text-xs md:text-sm flex items-center justify-center gap-2">
+          <ShieldCheck className="h-4 w-4 shrink-0" />
+          <span><strong>Trusted by 10,000+ families</strong> — Instant hospital assistance, 24/7 emergency support, zero paperwork</span>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">

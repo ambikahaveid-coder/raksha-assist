@@ -321,10 +321,9 @@ export default function AllPlansPage() {
           <p className="text-lg text-muted-foreground mb-4">
             Comprehensive protection for your life, vehicles, property, and business
           </p>
-          <div className="inline-block bg-amber-50 border border-amber-200 rounded-lg px-4 py-2">
-            <p className="text-sm text-amber-800">
-              <strong>Note:</strong> This is a membership-based assistance program, NOT an insurance product.
-            </p>
+          <div className="inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2">
+            <span className="text-green-600 font-bold">✓</span>
+            <p className="text-sm text-green-800 font-medium">Instant assistance · Zero paperwork · 24/7 support</p>
           </div>
 
           <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm">
@@ -522,8 +521,7 @@ export default function AllPlansPage() {
           <p className="text-xs text-slate-500 leading-relaxed max-w-3xl mx-auto">
             *Terms and Conditions apply. All plans are subject to waiting period, co-payment, fair usage policy, and other terms as mentioned in the membership agreement. 
             Prices shown are exclusive of applicable taxes (18% GST will be added at checkout). Monthly and quarterly payments include additional service charges. 
-            Raksha Assist is a membership-based emergency assistance program and is NOT an insurance product. 
-            Benefits are subject to verification and approval. Pre-existing conditions may have separate waiting periods. 
+            Benefits are subject to verification and approval. Pre-existing conditions may have separate waiting periods.
             For complete terms, visit our <a href="/terms" className="text-primary underline">Terms & Conditions</a> page.
           </p>
         </div>

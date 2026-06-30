@@ -148,10 +148,9 @@ export function Plans() {
           <p className="text-muted-foreground text-lg">
             Choose the level of assistance that fits your life. Transparent pricing.
           </p>
-          <div className="mt-4 inline-block bg-amber-50 border border-amber-200 rounded-lg px-4 py-2">
-            <p className="text-xs text-amber-800">
-              <strong>Note:</strong> This is a membership-based assistance program, NOT an insurance product.
-            </p>
+          <div className="mt-4 inline-flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-4 py-2">
+            <span className="text-green-600 text-lg">✓</span>
+            <p className="text-xs text-green-800 font-medium">All plans include 24/7 emergency support · Instant hospital coordination · No paperwork</p>
           </div>
         </div>
 
