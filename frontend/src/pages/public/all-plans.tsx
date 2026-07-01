@@ -154,82 +154,106 @@ const FALLBACK_PLANS = [
     features: '["₹10 Lakh Assistance per Employee","Full Family Coverage (Employee + 3 Dependents)","Min 50 Employees","Zero Co-Pay on All Claims","White-Label Cards with Company Logo","Dedicated Senior Relationship Manager","Custom VIP Helpline Number","Air Ambulance + Priority Hospitals","Custom SLA Agreement","Zero Processing Fees","7-Day Activation","Monthly + Quarterly Analytics"]',
     maxMembers: 4, waitingPeriodDays: 7, preHospitalizationAmount: 20000, postHospitalizationAmount: 20000,
     ambulanceCoverAmount: 15000, dayCareAmount: 25000, renewalBonus: 15, nclbPercent: 10, monthlyPrice: null, quarterlyPrice: null, halfYearlyPrice: null, serviceChargePercent: 5
+  },
+  {
+    id: "fb-16", planCode: "SENIOR_CARE", name: "Raksha Senior Care", planCategory: "senior",
+    price: 3499, originalPrice: 4999, coverageAmount: 300000, subscriptionPeriod: "yearly",
+    shortDescription: "Emergency care for senior citizens aged 60–70.", isPopular: false, isFeatured: false,
+    features: '["Emergency Assistance up to ₹3 Lakh","Accident Coverage — Zero Waiting Period","Priority Hospital Admission","24/7 Senior Helpline (Multi-language)","Personal Care Coordinator","Ambulance Coordination","Pre & Post Hospitalization","Medicine Home Delivery","30-Day Waiting (Illness)","15% Co-Pay"]',
+    maxMembers: 1, waitingPeriodDays: 30, preHospitalizationAmount: 5000, postHospitalizationAmount: 5000,
+    ambulanceCoverAmount: 3000, dayCareAmount: 0, renewalBonus: 5, nclbPercent: 0, monthlyPrice: null, quarterlyPrice: null, halfYearlyPrice: null, serviceChargePercent: 5
+  },
+  {
+    id: "fb-17", planCode: "SENIOR_PLUS", name: "Raksha Senior Plus", planCategory: "senior",
+    price: 5999, originalPrice: 8499, coverageAmount: 500000, subscriptionPeriod: "yearly",
+    shortDescription: "VIP senior care up to 75 years — dedicated care manager.", isPopular: true, isFeatured: true,
+    features: '["Emergency Assistance up to ₹5 Lakh","Seniors up to 75 Years","VIP Priority Hospital Network","Priority Ambulance Unlimited","Dedicated Senior Care Manager","24/7 Priority Helpline Multi-language","Full Pre & Post Hospitalization","Medicine Home Delivery","Legal Assistance for Accidents","Zero Processing Fees","15-Day Waiting (Illness)","Only 10% Co-Pay"]',
+    maxMembers: 1, waitingPeriodDays: 15, preHospitalizationAmount: 10000, postHospitalizationAmount: 10000,
+    ambulanceCoverAmount: 7500, dayCareAmount: 0, renewalBonus: 10, nclbPercent: 5, monthlyPrice: null, quarterlyPrice: null, halfYearlyPrice: null, serviceChargePercent: 5
+  },
+  {
+    id: "fb-18", planCode: "TW_ROAD", name: "Raksha Rider Essential", planCategory: "two_wheeler",
+    price: 799, originalPrice: 1299, coverageAmount: 150000, subscriptionPeriod: "yearly",
+    shortDescription: "Accident protection for bike & scooter riders.", isPopular: false, isFeatured: false,
+    features: '["Accident Assistance up to ₹1.5 Lakh","Zero Waiting — Road Accidents","24/7 Emergency Helpline","Ambulance Coordination","FIR & Legal Assistance","Cashless Network Hospitals","Towing Assistance Coordination","Digital Membership Card","30-Day Waiting (Illness)","20% Co-Pay"]',
+    maxMembers: 1, waitingPeriodDays: 30, preHospitalizationAmount: 0, postHospitalizationAmount: 0,
+    ambulanceCoverAmount: 2000, dayCareAmount: 0, renewalBonus: 0, nclbPercent: 0, monthlyPrice: null, quarterlyPrice: null, halfYearlyPrice: null, serviceChargePercent: 5
+  },
+  {
+    id: "fb-19", planCode: "TW_SHIELD", name: "Raksha Rider Shield", planCategory: "two_wheeler",
+    price: 1499, originalPrice: 2299, coverageAmount: 300000, subscriptionPeriod: "yearly",
+    shortDescription: "Complete rider protection + roadside & legal assist.", isPopular: true, isFeatured: true,
+    features: '["Accident & Medical Assistance up to ₹3 Lakh","Zero Waiting — Road Accidents","Priority Hospital Admission","Priority Ambulance Coordination","Roadside Breakdown Assistance","Personal Effects Loss Cover ₹3,000","FIR + Legal Consultation","Pre & Post Hospitalization","Cashless Network Hospitals","24/7 Priority Helpline","15-Day Waiting (Illness)","Only 15% Co-Pay"]',
+    maxMembers: 1, waitingPeriodDays: 15, preHospitalizationAmount: 3000, postHospitalizationAmount: 3000,
+    ambulanceCoverAmount: 4000, dayCareAmount: 0, renewalBonus: 5, nclbPercent: 0, monthlyPrice: null, quarterlyPrice: null, halfYearlyPrice: null, serviceChargePercent: 5
   }
 ];
 
 const CATEGORY_CONFIG: Record<string, { name: string; icon: any; description: string; color: string }> = {
-  individual: { 
-    name: "Individual Plans", 
-    icon: Shield, 
-    description: "Emergency support for individuals",
+  individual: {
+    name: "Individual Plans",
+    icon: Shield,
+    description: "Emergency support for individuals — 4 tiers from ₹599/yr",
     color: "bg-blue-50 border-blue-200 text-blue-700"
   },
   family: {
     name: "Family Plans",
     icon: Users,
-    description: "Comprehensive protection for your entire family",
+    description: "Comprehensive protection for your entire family — up to 6 members",
     color: "bg-green-50 border-green-200 text-green-700"
   },
   business: {
     name: "Business Shield",
-    icon: Shield,
+    icon: Building2,
     description: "For self-employed professionals, entrepreneurs & business owners",
     color: "bg-amber-50 border-amber-200 text-amber-700"
   },
   corporate: {
     name: "Corporate Shield",
-    icon: Users,
+    icon: Store,
     description: "Group plans for companies — per employee pricing, HR portal included",
     color: "bg-indigo-50 border-indigo-200 text-indigo-700"
   },
   senior: {
-    name: "Senior Citizen Plans", 
-    icon: Stethoscope, 
-    description: "Specialized care for senior citizens (60+ years)",
+    name: "Senior Citizen Plans",
+    icon: Stethoscope,
+    description: "Specialized emergency care for senior citizens (60–75 years)",
     color: "bg-purple-50 border-purple-200 text-purple-700"
   },
-  maternity: { 
-    name: "Maternity Plans", 
-    icon: Stethoscope, 
-    description: "Emergency care during pregnancy",
-    color: "bg-pink-50 border-pink-200 text-pink-700"
-  },
-  two_wheeler: { 
-    name: "Two Wheeler Assist", 
-    icon: Bike, 
-    description: "Roadside assistance for bikes and scooters",
+  two_wheeler: {
+    name: "Rider Assist",
+    icon: Bike,
+    description: "Accident & emergency protection for bike & scooter riders",
     color: "bg-orange-50 border-orange-200 text-orange-700"
   },
-  car: { 
-    name: "Car Assist", 
-    icon: Car, 
-    description: "Complete protection for your car",
-    color: "bg-slate-50 border-slate-200 text-slate-700"
-  },
-  commercial_vehicle: { 
-    name: "Commercial Vehicle Assist", 
-    icon: Truck, 
-    description: "Fleet and commercial vehicle support",
-    color: "bg-amber-50 border-amber-200 text-amber-700"
-  },
-  home: { 
-    name: "Home Assist", 
-    icon: Home, 
-    description: "Home emergency assistance services",
-    color: "bg-cyan-50 border-cyan-200 text-cyan-700"
-  },
-  business: { 
-    name: "Business Assist", 
-    icon: Store, 
-    description: "Complete business protection package",
-    color: "bg-indigo-50 border-indigo-200 text-indigo-700"
-  },
-  travel: { 
-    name: "Travel Assist", 
-    icon: Plane, 
-    description: "Travel emergency assistance",
-    color: "bg-rose-50 border-rose-200 text-rose-700"
-  }
+};
+
+const TIER_BADGES: Record<string, { symbol: string; tier: string; glow: string }> = {
+  // Individual tiers
+  STARTER:         { symbol: "🛡️", tier: "Bronze Shield",    glow: "text-orange-400" },
+  STANDARD:        { symbol: "⭐",  tier: "Silver Star",      glow: "text-slate-300"  },
+  PREMIUM:         { symbol: "💎",  tier: "Gold Diamond",     glow: "text-yellow-400" },
+  PLATINUM:        { symbol: "👑",  tier: "Platinum Crown",   glow: "text-purple-400" },
+  // Family tiers
+  FAMILY_BASIC:    { symbol: "🏠",  tier: "Family Essential", glow: "text-green-400"  },
+  FAMILY_SHIELD:   { symbol: "🛡️", tier: "Family Shield",    glow: "text-blue-400"   },
+  FAMILY_PREMIUM:  { symbol: "💎",  tier: "Family Crown",     glow: "text-yellow-400" },
+  FAMILY_ROYALE:   { symbol: "👑",  tier: "Family Royale",    glow: "text-purple-400" },
+  // Business tiers
+  BIZ_STARTER:     { symbol: "⚡",  tier: "Biz Essential",    glow: "text-amber-400"  },
+  BIZ_PRO:         { symbol: "🔥",  tier: "Biz Pro",          glow: "text-orange-400" },
+  BIZ_ELITE:       { symbol: "💼",  tier: "Biz Elite",        glow: "text-purple-400" },
+  // Corporate tiers
+  CORP_ESSENTIAL:  { symbol: "🏢",  tier: "Corp Essential",   glow: "text-blue-400"   },
+  CORP_STANDARD:   { symbol: "🏆",  tier: "Corp Standard",    glow: "text-amber-400"  },
+  CORP_PREMIUM:    { symbol: "✨",  tier: "Corp Premium",     glow: "text-yellow-400" },
+  CORP_ENTERPRISE: { symbol: "🌐",  tier: "Enterprise",       glow: "text-purple-400" },
+  // Senior tiers
+  SENIOR_CARE:     { symbol: "❤️",  tier: "Senior Care",      glow: "text-red-400"    },
+  SENIOR_PLUS:     { symbol: "💝",  tier: "Senior Plus",      glow: "text-pink-400"   },
+  // Two-Wheeler tiers
+  TW_ROAD:         { symbol: "🏍️", tier: "Rider Essential",  glow: "text-orange-400" },
+  TW_SHIELD:       { symbol: "🦺",  tier: "Rider Shield",     glow: "text-blue-400"   },
 };
 
 type PaymentFrequency = "monthly" | "quarterly" | "halfYearly" | "yearly";
@@ -536,7 +560,8 @@ function PlanCard({ plan, parseFeatures, paymentFrequency, isAuthenticated, curr
   const features = parseFeatures(plan.features);
   const yearlyPrice = plan.subscriptionPeriod === 'monthly' ? plan.price * 12 : plan.price;
   const isCurrentPlan = currentPlanCode === plan.planCategory || currentPlanCode === plan.planCode;
-  
+  const tierBadge = TIER_BADGES[plan.planCode];
+
   const getDisplayPrice = () => {
     switch (paymentFrequency) {
       case "monthly":
@@ -562,22 +587,30 @@ function PlanCard({ plan, parseFeatures, paymentFrequency, isAuthenticated, curr
 
   const displayPrice = getDisplayPrice();
   const serviceCharge = paymentFrequency !== "yearly" ? plan.serviceChargePercent || 5 : 0;
-  
+
   return (
     <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-b from-slate-900 to-slate-800 text-white ${plan.isFeatured ? 'ring-2 ring-orange-500 shadow-xl' : 'shadow-lg'}`}>
       {plan.isPopular && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide">
+        <div className="absolute top-4 right-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
           Most Popular
         </div>
       )}
       {plan.isFeatured && !plan.isPopular && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide flex items-center gap-1">
+        <div className="absolute top-4 right-4 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
           <Sparkles className="h-3 w-3" />
           Featured
         </div>
       )}
-      
-      <div className="p-6 pt-12">
+
+      <div className="p-6">
+        {/* Tier Badge — Special Character */}
+        {tierBadge && (
+          <div className={`flex items-center gap-2 mb-3 ${tierBadge.glow}`}>
+            <span className="text-3xl leading-none">{tierBadge.symbol}</span>
+            <span className="text-xs font-bold uppercase tracking-widest opacity-80">{tierBadge.tier}</span>
+          </div>
+        )}
+
         <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
         <p className="text-slate-400 text-sm mb-4">{plan.shortDescription || plan.description}</p>
         
